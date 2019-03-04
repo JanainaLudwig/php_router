@@ -14,7 +14,7 @@ $router->get('/', function() {
 ### Variables
 To use variables, just declare each one of them in the route, and receive it as a function parameter.
 ```
-$router->get('/item/\$id', function($id) {
+$router->get('/item/$id', function($id) {
   //Do another stuff
   echo $id;
 });
