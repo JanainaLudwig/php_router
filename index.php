@@ -18,7 +18,6 @@ $router->get('/item/$item', function($item) {
     echo "Item $item";
 });
 
-//TODO:
 $router->get('/item/$item/edit', function($item) {
     echo "Edit item $item";
 });
