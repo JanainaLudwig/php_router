@@ -2,6 +2,7 @@
 namespace App\Routes;
 
 use App\Requests\Request;
+use App\App\Controllers\Home;
 
 class Route {
     private $route;
@@ -34,7 +35,21 @@ class Route {
     public function execute() {
         extract($this->getRouteVars());
 
-        $reflect = new \ReflectionFunction($this->handle);
+        if (gettype($this->handle) === 'string') {
+            $handleArray = explode('@', $this->handle);
+            $object = "App\App\Controllers\\{$handleArray[0]}";
+
+            $controller = new $object;
+
+            $method = $handleArray[1];
+
+            $call = [$controller, $method];
+
+            $reflect = new \ReflectionMethod($controller, $method);
+        } else {
+            $call = $this->handle;
+            $reflect = new \ReflectionFunction($call);
+        }
         
         $params = array();
 
@@ -42,6 +57,6 @@ class Route {
             $params[] = ${$value->name};
         }
 
-        call_user_func_array($this->handle, $params);
+        call_user_func_array($call, $params);
     }
 }
