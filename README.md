@@ -34,11 +34,11 @@ $router->get('/item/$id', function($id) {
 
 **Controllers**
 
-For a route thats expects an user, for example:
+For a route that expects an user, for example:
 ```
 $router->get('/$user', 'Home@user');
 ```
-The controller method *user* can receive the user expecting it as a parameter:
+The controller method *user* can receive the *$user* variable expecting it as a parameter:
 ```
 class Home {
   public function user($user) {
