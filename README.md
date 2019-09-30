@@ -1,6 +1,6 @@
 # php_router
 
-A simple PHP router with variables.
+A simple PHP router with route parameters.
 
 
 ## Syntax
